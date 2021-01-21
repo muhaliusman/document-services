@@ -1,6 +1,6 @@
 import Folder from "../models/folder";
 import Document from "../models/document";
-// import cache from "../helper/redis";
+import cache from "../helper/redis";
 import logger from "../helper/logger";
 
 const documentController = {
@@ -47,11 +47,7 @@ const documentController = {
         upsert: true,
       });
 
-      // cache.del("document-service", (error) => {
-      //   if (error) {
-      //     logger.error(error);
-      //   }
-      // });
+      cache.delete(["document-service"]);
 
       return res.status(201).json({
         error: false,
@@ -105,11 +101,7 @@ const documentController = {
         });
       }
 
-      // cache.del("document-service", (error) => {
-      //   if (error) {
-      //     logger.error(error);
-      //   }
-      // });
+      cache.delete(["document-service"]);
 
       return res.status(200).json({
         error: false,
@@ -151,11 +143,11 @@ const documentController = {
         upsert: true,
       });
 
-      // cache.del("document-service", (error) => {
-      //   if (error) {
-      //     logger.error(error);
-      //   }
-      // });
+      cache.delete([
+        "document-service",
+        "document-service.folder",
+        "document-service.document.one",
+      ]);
 
       return res.status(201).json({
         error: false,
@@ -214,11 +206,11 @@ const documentController = {
         });
       }
 
-      // cache.del("document-service", (error) => {
-      //   if (error) {
-      //     logger.error(error);
-      //   }
-      // });
+      cache.delete([
+        "document-service",
+        "document-service.folder",
+        "document-service.document.one",
+      ]);
 
       return res.status(200).json({
         error: false,

@@ -1,11 +1,15 @@
 import express from "express";
 import documentController from "../controllers/documentController";
 import auth from "../middlelware/auth";
-// import cache from "../helper/redis";
+import cache from "../helper/redis";
 
 const router = express.Router();
 
-router.get("/document-service", [auth.required], documentController.getAll);
+router.get(
+  "/document-service",
+  [auth.required, cache.route("document-service")],
+  documentController.getAll
+);
 router.post(
   "/document-service/folder",
   [auth.required],
@@ -18,7 +22,7 @@ router.delete(
 );
 router.get(
   "/document-service/folder/:id",
-  [auth.required],
+  [auth.required, cache.route("document-service.folder")],
   documentController.getDocumentByFolderId
 );
 router.post(
@@ -28,7 +32,7 @@ router.post(
 );
 router.get(
   "/document-service/document/:id",
-  [auth.required],
+  [auth.required, cache.route("document-service.document.one")],
   documentController.getDocumentById
 );
 router.delete(

@@ -10,6 +10,16 @@ const cache = expressRedisCache({
   prefix: config.redis.prefix,
 });
 
+cache.delete = (names) => {
+  names.forEach((v) => {
+    cache.del(v, (error) => {
+      if (error) {
+        logger.error(error);
+      }
+    });
+  });
+};
+
 cache.on("error", () => {
   logger.error("Konfigurasi redis salah, atau redis tidak connect");
 });
