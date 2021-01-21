@@ -20,6 +20,17 @@ var cache = (0, _expressRedisCache["default"])({
   expire: parseFloat(_app["default"].redis.expire),
   prefix: _app["default"].redis.prefix
 });
+
+cache["delete"] = function (names) {
+  names.forEach(function (v) {
+    cache.del(v, function (error) {
+      if (error) {
+        _logger["default"].error(error);
+      }
+    });
+  });
+};
+
 cache.on("error", function () {
   _logger["default"].error("Konfigurasi redis salah, atau redis tidak connect");
 });

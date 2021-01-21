@@ -15,9 +15,10 @@ var _folder = _interopRequireDefault(require("../models/folder"));
 
 var _document = _interopRequireDefault(require("../models/document"));
 
+var _redis = _interopRequireDefault(require("../helper/redis"));
+
 var _logger = _interopRequireDefault(require("../helper/logger"));
 
-// import cache from "../helper/redis";
 var documentController = {
   getAll: function () {
     var _getAll = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
@@ -119,14 +120,17 @@ var documentController = {
 
             case 9:
               data = _context2.sent;
+
+              _redis["default"]["delete"](["document-service"]);
+
               return _context2.abrupt("return", res.status(201).json({
                 error: false,
                 message: "folder created",
                 data: data
               }));
 
-            case 13:
-              _context2.prev = 13;
+            case 14:
+              _context2.prev = 14;
               _context2.t0 = _context2["catch"](0);
 
               _logger["default"].error(_context2.t0);
@@ -135,12 +139,12 @@ var documentController = {
                 error: _context2.t0
               }));
 
-            case 17:
+            case 18:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 13]]);
+      }, _callee2, null, [[0, 14]]);
     }));
 
     function setFolder(_x3, _x4) {
@@ -236,13 +240,15 @@ var documentController = {
               }));
 
             case 8:
+              _redis["default"]["delete"](["document-service"]);
+
               return _context4.abrupt("return", res.status(200).json({
                 error: false,
                 message: "Success delete folder"
               }));
 
-            case 11:
-              _context4.prev = 11;
+            case 12:
+              _context4.prev = 12;
               _context4.t0 = _context4["catch"](0);
 
               _logger["default"].error(_context4.t0);
@@ -251,12 +257,12 @@ var documentController = {
                 error: _context4.t0
               }));
 
-            case 15:
+            case 16:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[0, 11]]);
+      }, _callee4, null, [[0, 12]]);
     }));
 
     function deleteFolder(_x7, _x8) {
@@ -306,14 +312,17 @@ var documentController = {
 
             case 9:
               data = _context5.sent;
+
+              _redis["default"]["delete"](["document-service", "document-service.folder", "document-service.document.one"]);
+
               return _context5.abrupt("return", res.status(201).json({
                 error: false,
                 message: "folder created",
                 data: data
               }));
 
-            case 13:
-              _context5.prev = 13;
+            case 14:
+              _context5.prev = 14;
               _context5.t0 = _context5["catch"](0);
 
               _logger["default"].error(_context5.t0);
@@ -322,12 +331,12 @@ var documentController = {
                 error: _context5.t0
               }));
 
-            case 17:
+            case 18:
             case "end":
               return _context5.stop();
           }
         }
-      }, _callee5, null, [[0, 13]]);
+      }, _callee5, null, [[0, 14]]);
     }));
 
     function setDocument(_x9, _x10) {
@@ -435,13 +444,15 @@ var documentController = {
               }));
 
             case 8:
+              _redis["default"]["delete"](["document-service", "document-service.folder", "document-service.document.one"]);
+
               return _context7.abrupt("return", res.status(200).json({
                 error: false,
                 message: "Success delete document"
               }));
 
-            case 11:
-              _context7.prev = 11;
+            case 12:
+              _context7.prev = 12;
               _context7.t0 = _context7["catch"](0);
 
               _logger["default"].error(_context7.t0);
@@ -450,12 +461,12 @@ var documentController = {
                 error: _context7.t0
               }));
 
-            case 15:
+            case 16:
             case "end":
               return _context7.stop();
           }
         }
-      }, _callee7, null, [[0, 11]]);
+      }, _callee7, null, [[0, 12]]);
     }));
 
     function deleteDocument(_x13, _x14) {

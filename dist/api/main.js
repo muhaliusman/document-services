@@ -49,7 +49,7 @@ app.use(function (err, req, res, next) {
   next();
 });
 server.listen(_app["default"].port, function () {
-  if (_app["default"].env !== "production" && _app["default"].env !== "development" && _app["default"].env !== "testing") {
+  if (_app["default"].env !== "production" && _app["default"].env !== "development") {
     _logger["default"].error("Environtment tidak valid");
 
     process.exit(1);

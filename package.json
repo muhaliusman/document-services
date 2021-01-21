@@ -11,13 +11,13 @@
   "scripts": {
     "start": "npm run prod",
     "prebuild": "eslint . --fix && rimraf dist",
-    "build": "babel . -d dist --ignore spec.js,node_modules",
+    "build": "cross-env babel . -d dist --ignore spec.js,node_modules",
     "preserve": "npm run lint",
     "serve": "nodemon --exec babel-node ./api/main.js",
     "lint": "eslint . --fix",
     "precommit": "npm run lint",
-    "prod": "cross-env NODE_ENV=production node ./dist/api/main.js",
-    "dev": "cross-env NODE_ENV=development node ./dist/api/main.js"
+    "prod": "cross-env APP_ENV=production node ./dist/api/main.js",
+    "dev": "cross-env APP_ENV=development node ./dist/api/main.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
