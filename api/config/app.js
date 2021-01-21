@@ -16,10 +16,7 @@ const config = {
     prefix: process.env.REDIS_PREFIX,
   },
   mongo: {
-    uri:
-      process.env.APP_ENV === "test"
-        ? process.env.MONGO_URI_TESTS
-        : process.env.MONGO_URI,
+    uri: process.env.MONGO_URI,
   },
 };
 

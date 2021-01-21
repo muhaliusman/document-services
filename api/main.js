@@ -35,11 +35,7 @@ app.use((err, req, res, next) => {
 });
 
 server.listen(config.port, () => {
-  if (
-    config.env !== "production" &&
-    config.env !== "development" &&
-    config.env !== "testing"
-  ) {
+  if (config.env !== "production" && config.env !== "development") {
     logger.error(`Environtment tidak valid`);
     process.exit(1);
   }
